@@ -67,7 +67,9 @@ A quick ui within telescope to pick up file or directory.
 * `C-f` trigger `find_files` within picked directory.
 * `A-c` copy current selection to another file or create a new file.
 * `A-d` delete current selection.
+* `A-p` use current directory as current working directory.
 * `A-t` open terminal from current working directory.
+    * You need to set `vim.g.SHELL` to match your shell.
 
 ![d](https://user-images.githubusercontent.com/288207/225836274-713eb4ee-1330-4dc6-9649-47701b993081.gif)
 

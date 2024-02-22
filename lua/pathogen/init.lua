@@ -411,6 +411,11 @@ function M.browse_file(opts)
             end)
         end
     end
+    local function change_cwd(prompt_bufnr)
+        local curr_picker = state.get_current_picker(prompt_bufnr)
+        actions.close(prompt_bufnr)
+        vim.cmd("cd " .. curr_picker.cwd)
+    end
     local function terminal(prompt_bufnr)
         local curr_picker = state.get_current_picker(prompt_bufnr)
         actions.close(prompt_bufnr)
@@ -439,6 +444,7 @@ function M.browse_file(opts)
             map("i", "<C-f>", find_files)
             map("i", "<A-c>", create_file)
             map("i", "<A-d>", delete_file)
+            map("i", "<A-p>", change_cwd)
             map("i", "<A-t>", terminal)
             return common_mappings(_, map)
         end,
