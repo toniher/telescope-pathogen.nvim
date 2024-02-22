@@ -13,7 +13,8 @@ local flatten = vim.tbl_flatten
 
 local M = {
     use_last_search_for_live_grep = true,
-    prompt_prefix_length = 100
+    prompt_prefix_length = 100,
+    trigger_cwd = false
 }
 
 local unescape_chars = function(str)
@@ -364,6 +365,9 @@ function M.browse_file(opts)
         M.find_files({
             cwd = curr_picker.cwd
         })
+        if M.trigger_cwd then
+            vim.cmd("cd " .. curr_picker.cwd)
+        end
     end
     local function live_grep(prompt_bufnr)
         local curr_picker = state.get_current_picker(prompt_bufnr)
@@ -372,6 +376,9 @@ function M.browse_file(opts)
         M.live_grep({
             cwd = curr_picker.cwd
         })
+        if M.trigger_cwd then
+            vim.cmd("cd " .. curr_picker.cwd)
+        end
     end
     local function create_file(prompt_bufnr)
         local curr_picker = state.get_current_picker(prompt_bufnr)
